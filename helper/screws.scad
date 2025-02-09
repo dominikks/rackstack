@@ -165,6 +165,27 @@ module hexNutPocketHelper_N(innerRadius, widthAcrossCorners, thickness, openSide
   }
 }
 
+// A screw post for mounting devices
+// height is the total height including the head
+module screwPost(type, height) {
+    // Screw shaft dimensions
+    shaft_radius = screwRadiusSlacked(type);
+
+    head_height = 2;  // Height of the head
+    head_radius = shaft_radius * 2;  // Head is twice the shaft diameter
+    shaft_height = height - head_height;
+
+    union() {
+        // Screw head
+        translate([0, 0, shaft_height]) {
+            cylinder(r = head_radius, h = head_height);
+        }
+
+        // Shaft
+        cylinder(r = shaft_radius, h = shaft_height);
+    }
+}
+
 // Convert a regular hexagon widthAcrossFlats to widthAcrossCorners
 function FtoG(widthAcrossFlats) = widthAcrossFlats * (2 / sqrt(3));
 

@@ -28,10 +28,20 @@ module bottomScrewTray(u, trayWidth, trayDepth, trayThickness, mountPoints, moun
   // check (tray width)+(configured extra space) fits within the rack
   assert(trayWidth <= screwDx-(2*minScrewToTraySpacing + trayLeftPadding));
 
-  difference() {
-    applyMountHoles()
-    translate(v = [-sideThickness, -frontThickness, -trayThickness])
-    body();
+  if (mountPointType == "screwpost") {
+    // For screw posts, use union to add posts
+    union() {
+      applyMountPosts();
+      translate(v = [-sideThickness, -frontThickness, -trayThickness])
+      body();
+    }
+  } else {
+    // For traditional mount points, use difference to create holes
+    difference() {
+      applyMountHoles()
+      translate(v = [-sideThickness, -frontThickness, -trayThickness])
+      body();
+    }
   }
 
   module body() {
@@ -89,5 +99,16 @@ module bottomScrewTray(u, trayWidth, trayDepth, trayThickness, mountPoints, moun
 
   }
 
+  module applyMountPosts() {
+    if (len(mountPoints) > 0) {
+      for (i = [0:len(mountPoints)-1]) {
+        x = mountPoints[i][0];
+        y = mountPoints[i][1];
+
+        translate(v = [x, y, trayThickness])
+        screwPost("m4", mountPointElevation);  // Using M3 size for posts, can be adjusted
+      }
+    }
+  }
 
 }
