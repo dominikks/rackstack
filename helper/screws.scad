@@ -171,18 +171,20 @@ module screwPost(type, height) {
     // Screw shaft dimensions
     shaft_radius = screwRadiusSlacked(type);
 
-    head_height = 2;  // Height of the head
+    head_height = 3;  // Height of the head
     head_radius = shaft_radius * 2;  // Head is twice the shaft diameter
-    shaft_height = height - head_height;
-
+    
     union() {
-        // Screw head
-        translate([0, 0, shaft_height]) {
-            cylinder(r = head_radius, h = head_height);
-        }
-
         // Shaft
-        cylinder(r = shaft_radius, h = shaft_height);
+        cylinder(r = shaft_radius, h = height);
+        
+        // Shaft chamfer
+        cylinder(r1 = head_radius, r2 = shaft_radius, h = head_height);
+        
+        // Screw head
+        translate([0, 0, height - head_height]) {
+            cylinder(r1 = shaft_radius, r2 = head_radius, h = head_height);
+        }
     }
 }
 

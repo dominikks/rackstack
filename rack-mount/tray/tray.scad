@@ -31,9 +31,9 @@ module bottomScrewTray(u, trayWidth, trayDepth, trayThickness, mountPoints, moun
   if (mountPointType == "screwpost") {
     // For screw posts, use union to add posts
     union() {
-      applyMountPosts();
       translate(v = [-sideThickness, -frontThickness, -trayThickness])
       body();
+      applyMountPosts();
     }
   } else {
     // For traditional mount points, use difference to create holes
@@ -106,7 +106,7 @@ module bottomScrewTray(u, trayWidth, trayDepth, trayThickness, mountPoints, moun
         y = mountPoints[i][1];
 
         translate(v = [x, y, trayThickness])
-        screwPost("m4", mountPointElevation);  // Using M3 size for posts, can be adjusted
+        screwPost("m4", mountPointElevation);
       }
     }
   }
