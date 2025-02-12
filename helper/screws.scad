@@ -176,15 +176,15 @@ module screwPost(type, height) {
     
     union() {
         // Shaft
-        cylinder(r = shaft_radius, h = height);
+        translate([0, 0, head_height])
+            cylinder(r = shaft_radius, h = height - 2 * head_height);
         
         // Shaft chamfer
         cylinder(r1 = head_radius, r2 = shaft_radius, h = head_height);
         
         // Screw head
-        translate([0, 0, height - head_height]) {
+        translate([0, 0, height - head_height])
             cylinder(r1 = shaft_radius, r2 = head_radius, h = head_height);
-        }
     }
 }
 

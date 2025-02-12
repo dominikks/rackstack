@@ -1,4 +1,4 @@
-use <./tray.scad>
+use <../tray/tray.scad>
 
 /*
   Parametric rack-mount tray:
@@ -6,15 +6,6 @@ use <./tray.scad>
   screw holes at the bottom.
 
   !!! Please also make sure that the correct rack frame preset is set in rackFrame.scad !!!
-*/
-
-/*
-  Measurements of the Vigor 165:
-  Width: 180
-  Depth: 125
-  Screwhold depth: 14
-  Screw offset side: 20
-  Screw offset front/back: 30
 */
 
 module traySystem (
@@ -25,32 +16,28 @@ trayU = 2,
 
 // these dimensions are the total base width including padding not usable space. 
 // e.g. 145 baseWidth and 3 sideThickness = 145-(3*2) = 139mm useable space.
-baseWidth = 190,
-baseDepth = 130,
+baseWidth = 151,
+baseDepth = 139,
 
 baseThickness = 3, // tray bottom thickness
 frontThickness = 3, // front plate thickness
 sideThickness = 3,
 
-backLipHeight = 8,
+backLipHeight = 6,
 frontLipHeight = 2,
 
 sideSupport = true,
 trayLeftPadding = 10, // extra space between the left rail and tray. configure this to move the tray left/right.
 
 mountPointType = "screwpost",
-mountPointElevation = 11, // basically standoff height
+mountPointElevation = 10, // basically standoff height
 
 // add/config standoff coordinates here. Format is [[x,y]]
-mountPoints = [
-    [20          ,100],
-    [190 - 6 - 20,100],
-]
+mountPoints = []
 
 // end config //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ) {
-
   bottomScrewTray (
     u = trayU,
     trayWidth = baseWidth,

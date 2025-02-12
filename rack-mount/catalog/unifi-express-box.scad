@@ -1,9 +1,9 @@
 include <../../rack/sharedVariables.scad>
 include <../common.scad>
-include <./helper.scad>
+include <../enclosed-box/helper.scad>
 
-use <./sideRail.scad>
-use <./frontBoxHolder.scad>
+use <../enclosed-box/sideRail.scad>
+use <../enclosed-box/frontBoxHolder.scad>
 
 /*
   Enclosed box mounting system:
@@ -21,9 +21,9 @@ visualize = false,
 zOrientation = "middle", // ["middle" | "bottom"]
 recessSideRail = false,
 
-boxWidth = 160,
-boxHeight = 27,
-boxDepth = 120,
+boxWidth = 99,
+boxHeight = 31,
+boxDepth = 99,
 
 railDefaultThickness = 1.5,
 railSideThickness = 3,
