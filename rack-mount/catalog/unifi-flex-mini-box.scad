@@ -17,7 +17,7 @@ module enclosedBoxSystem (
 // begin config ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Does not affect any part dimensions. Set this to true to visualize how a box would be mounted.
-visualize = true,
+visualize = false,
 zOrientation = "middle", // ["middle" | "bottom"]
 recessSideRail = false,
 
